@@ -34,10 +34,19 @@
         <span class="radio-description">Recent tasks first</span>
         <input class="form-control mr-sm-2" type="radio" ng-model="order" value="+" style="margin-left: 15px;">
         <span class="radio-description">Oldest tasks first</span>
-    </form>
+
+        
+    </form> 
+
+    <div class="col-md-offset-1 col-md-2" ng-controller="loginController">
+            <ng-show ng-show="loggedUser">
+                    <button ng-click="logout()"class="btn btn-primary"> LogOut</button>   
+            </ng-show>
+        </div>
 </nav>
 
 <div class="container">
+    
     <!-- Add Task -->
     <form ng-submit="addTask()">
         <div class="input-group">

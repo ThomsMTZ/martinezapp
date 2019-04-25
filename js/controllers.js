@@ -82,8 +82,10 @@ app.controller("loginController", function($scope, loginFactory, $location, $roo
     }
 
     $scope.logout = function(){
+        console.log("logout");
         sessionStorage.removeItem("loggedUser");
         $rootScope.loggedUser = undefined;
         $location.path("/Login");
+        
     }
 });
