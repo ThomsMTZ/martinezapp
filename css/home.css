@@ -9,10 +9,6 @@ nav{
 
 /* ------- CLASSES ------- */
 
-.content{
-    padding-top: 5.5%;
-}
-
 .navbar-inverse .navbar-nav>li{
     color: rgba(254,240,53,1);
 }
@@ -28,6 +24,21 @@ nav{
 
 .navbar-nav>li{
     padding: 1.5em;
+}
+
+.radio-description {
+    color: black;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+.username {
+    font-size: 22pt;
+    margin-left: 50px;
+}
+
+.task-name {
+    background-color: white;
 }
 
 /* ------- ID ------- */

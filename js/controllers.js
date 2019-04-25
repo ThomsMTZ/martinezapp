@@ -1,4 +1,6 @@
 app.controller("tasksController", function($scope, tasksFactory, $rootScope, $location ) {
+
+    $scope.tasks = [];
  
     $scope.getAllTasksFromAuthor = function(){
        
@@ -15,24 +17,26 @@ app.controller("tasksController", function($scope, tasksFactory, $rootScope, $lo
     }
 
     $scope.addTask = function(){
-        tasksFactory.addTask( $scope.newTask.title, $scope.newTask.task, $rootScope.loggedUser )
+        tasksFactory.addTask( $scope.newTask.title, $scope.newTask.task, $rootScope.loggedUser, function() {
+            $scope.getAllTasksFromAuthor();
+        });
         $scope.newTask.title = '';
         $scope.newTask.task = '';
-
-        $scope.getAllTasksFromAuthor( $rootScope.loggedUser );
     }
 
     $scope.removeTask = function( task ){
-        tasksFactory.removeTask( task._id );
-
-        $scope.getAllTasksFromAuthor( task.author );
+        tasksFactory.removeTask( task._id, function() {
+            $scope.getAllTasksFromAuthor(task.author);
+        } );
     }
 
     $scope.setStatusTask = function( task ){
-        tasksFactory.setStatusTask( task._id, !task.done );
-
-        $scope.getAllTasksFromAuthor( task.author );
+        tasksFactory.setStatusTask( task._id, !task.done, function() {
+            $scope.getAllTasksFromAuthor( task.author );
+        } );        
     }
+
+    $scope.getAllTasksFromAuthor();
 });
 
 app.controller("registerController", function($scope, registerFactory, $location, $rootScope) {

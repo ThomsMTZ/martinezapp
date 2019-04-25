@@ -20,7 +20,7 @@ app.factory('tasksFactory', function($http) {
     });
   };
 
-  factory.addTask = function( title, task, author, cb ){
+  factory.addTask = function( title, task, author ){
     var requete = {
       title : title,
       task : task,
@@ -28,40 +28,31 @@ app.factory('tasksFactory', function($http) {
     };
  
     $http.post('/addTask', requete )
-    .then(function(res) {
-      cb()
-    })
     .catch( function( response ){
       console.log("Impossible d'ajouter la tache de \'" + author + "\' intitulé \'" + title + "\' disant \'" + task + "\'");
-      cb();
+      cb( response );
     });
   };
   
-  factory.removeTask = function( _id, cb){
+  factory.removeTask = function( _id ){
     var requete = {
       _id : _id
     };
  
     $http.post('/removeTask', requete )
-    .then(function(res) {
-      cb();
-    })
     .catch( function( response ){
       console.log("Impossible de supprimer la tache d'id \'" + _id + "\'");
       cb( response );
     });
   };
 
-  factory.setStatusTask = function( _id, done, cb ){
+  factory.setStatusTask = function( _id, done ){
     var requete = {
       _id : _id,
       done : done
     };
 
     $http.post('/setStatusTask', requete )
-    .then(function(res) {
-      cb();
-    })
     .catch( function( response ){
       console.log("Impossible de changer le statut de la tache d'id \'" + _id + "\'");
       cb( response );
